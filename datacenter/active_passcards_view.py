@@ -19,6 +19,18 @@ def active_passcards_view(request):
     for visit in unclosed_visits:
         print(visit.passcard.owner_name)
 
+    threshold_minutes = 10
+
+    suspicious_visits = []
+
+    all_visits = Visit.objects.all()
+
+    for visit in all_visits:
+        if is_visit_long(visit, minutes=threshold_minutes):
+            suspicious_visits.append(visit)
+
+    print(f'Визиты дольше {threshold_minutes} мин: {suspicious_visits}')
+
     example_passcard = Passcard.objects.all()[0]
     example_visits = Visit.objects.filter(passcard=example_passcard)
     print(example_visits)
