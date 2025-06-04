@@ -8,12 +8,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DATABASES = {
     'default': {
-        'ENGINE': os.environ['DB_ENGINE'],
-        'HOST': os.environ['DB_HOST'],
-        'PORT': os.environ['DB_PORT'],
-        'NAME': os.environ['DB_NAME'],
-        'USER': os.environ['DB_USER'],
-        'PASSWORD': os.environ['DB_PASSWORD'],
+        'ENGINE': env.str('DB_ENGINE', ''),
+        'HOST': env.str('DB_HOST', ''),
+        'PORT': env.int('DB_PORT', 5432),
+        'NAME': env.str('DB_NAME', ''),
+        'USER': env.str('DB_USER', ''),
+        'PASSWORD': env.str('DB_PASSWORD', ''),
     }
 }
 
