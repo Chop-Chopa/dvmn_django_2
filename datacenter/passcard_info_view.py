@@ -1,7 +1,7 @@
-from datacenter.models import Passcard, Visit, get_duration, format_duration, is_visit_long
+from datacenter.models import Passcard, Visit
 from django.shortcuts import render, get_object_or_404
 from django.utils.timezone import localtime
-
+from visit_duration import get_duration, format_duration, is_visit_long
 
 def passcard_info_view(request, passcode):
     passcard = get_object_or_404(Passcard, passcode=passcode)
@@ -17,8 +17,6 @@ def passcard_info_view(request, passcode):
             'is_strange': is_visit_long(visit)
         }
         this_passcard_visits.append(visit_info)
-
-    print(f'Визиты для {passcard.owner_name}: {visits}')
 
     context = {
         'passcard': passcard,
