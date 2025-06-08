@@ -1,9 +1,8 @@
 from datacenter.models import Passcard
 from datacenter.models import Visit
 from django.shortcuts import render
-from datacenter.models import get_duration, format_duration
 from django.utils.timezone import localtime
-
+from visit_duration import get_duration, format_duration
 
 def storage_information_view(request):
     not_leaved = Visit.objects.filter(leaved_at__isnull=True)
